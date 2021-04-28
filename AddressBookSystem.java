@@ -10,7 +10,7 @@ public class AddressBookInfoEdit {
         System.out.println("Welcome to New Address Book");
         boolean isExit = false;
         while (!isExit) {
-            System.out.println("1. Adding\n2. Editing\n3. Exit");
+            System.out.println("1. Adding\n2. Editing\n3. Deleting\n4. Exit");
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -129,5 +129,6 @@ public class AddressBookInfoEdit {
         return person;
     }
 }
+
 
 
