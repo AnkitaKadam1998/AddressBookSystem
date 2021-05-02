@@ -75,6 +75,22 @@ public class AddressBook {
         }
         return flag == 1;
     }
+	
+	public boolean checkDuplicate(String fname)
+    {
+        int flag=0;
+        for (Person p: contactList)
+        {
+            if (p.getFirstName().equals(fname))
+            {
+                flag=1;
+                break;
+            }
+        }
+        return flag == 1;
+    }		
+
+
     public void display() {
         for (Person person : contactList)				//Display method
             System.out.println(person);
