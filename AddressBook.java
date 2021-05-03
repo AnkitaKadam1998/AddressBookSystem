@@ -1,9 +1,12 @@
-package AddressBookjava;
+package AddressbookProgram;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.List;
 
 public class AddressBook {
+	
 	public static Scanner sc = new Scanner(System.in);
     //contact of person stored in arraylist
     public ArrayList<Person> contactList = new ArrayList<>();
@@ -27,7 +30,7 @@ public class AddressBook {
         System.out.println("Enter the contact number...");
         String phoneNumber = sc.next();
         //passing the value in constructor
-        Person contactofPerson = new Person(firstName, lastName, address, city, state, email, phoneNumber, zip);
+       Person contactofPerson = new Person(firstName, lastName, address, city, state, email, phoneNumber, zip);
         contactList.add(contactofPerson);
 
     }
@@ -75,8 +78,8 @@ public class AddressBook {
         }
         return flag == 1;
     }
-	
-	public boolean checkDuplicate(String fname)
+    
+    public boolean checkDuplicate(String fname)
     {
         int flag=0;
         for (Person p: contactList)
@@ -88,12 +91,25 @@ public class AddressBook {
             }
         }
         return flag == 1;
-    }		
+    }
+    
+ // used java stream
+    public void getPersonNameByState(String State) {
+        List<Person> list = contactList.stream().filter(contactName -> contactName.getState().equals(State))
+                .collect(Collectors.toList());
+        for (Person contact : list) {
+            System.out.println("First Name: " + contact.getFirstName());
+            System.out.println("Last Name: " + contact.getLastName());
+        }
 
-
-    public void display() {
-        for (Person person : contactList)				//Display method
-            System.out.println(person);
     }
 
+    public void getPersonNameByCity(String cityName) {
+        List<Person> list = contactList.stream().filter(contactName -> contactName.getCity().equals(cityName))
+                .collect(Collectors.toList());
+        for (Person contact : list) {
+            System.out.println("First Name: " + contact.getFirstName());
+            System.out.println("Last Name: " + contact.getLastName());
+        }
+    }
 }
