@@ -12,10 +12,11 @@ public class AddressBook {
     public HashMap<String, ArrayList<Person>> personByState;
     public HashMap<String, ArrayList<Person>> personByCity;
 
-     public AddressBook() {
+	 public AddressBook() {
         personByCity = new HashMap<String, ArrayList<Person>>();
         personByState = new HashMap<String, ArrayList<Person>>();
         contactList = new ArrayList<>();
+   
     }
 
     public ArrayList<Person> addContactDetails() {
