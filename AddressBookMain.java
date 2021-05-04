@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
     public static Scanner sc = new Scanner(System.in);
@@ -138,6 +139,19 @@ public class AddressBookMain {
         }
         System.out.println("Total number of people in this city " + city + ": " + countPersonInCity);
     }
+
+	private void sortContactByName() {
+        for (Map.Entry<String,AddressBook>entry:addressBookListMap.entrySet()){
+            AddressBook value = entry.getValue();
+            List<Person> sortedList = value.contactList.stream().sorted(Comparator.comparing(Person::getFirstName)).collect(Collectors.toList());
+
+            for(Person contact:sortedList){
+                System.out.println("First Name: "+contact.getFirstName());
+                System.out.println("Last Name: "+contact.getLastName());
+
+            }
+        }
+    }
 	
 
     public static void main(String[] args) {
@@ -152,8 +166,9 @@ public class AddressBookMain {
 					 System.out.println("4.View contact By State Using State and Person HashMap");
             	 System.out.println("5.View Contact by city Using City and Person HashMap");
 					 System.out.println("6.Count Contact By State");
-            	 System.out.println("7.Count Contact By City");	
-                System.out.println("8.Exit");
+            	 System.out.println("7.Count Contact By City");
+					 System.out.println("8.Sort Contact By Name");	
+                System.out.println("9.Exit");
                 
 					 System.out.println("Enter choice: ");
                 int option = sc.nextInt();
@@ -206,7 +221,11 @@ public class AddressBookMain {
                     addressBookMain.CountByCity(cityName2);
                     break;
 
-                case 8:
+					case 8:
+                    System.out.println("Sort Contact");
+                    addressBookMain.sortContactByName(); 
+
+                case 9:
                     flag = false;
                     break;      
              
